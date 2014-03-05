@@ -30,10 +30,10 @@ genomic_start_position=
 # convert fastq to fasta
 fastq_to_fasta -Q 33 -n -i ${path}${data}.fq -o ${path}${data}.fasta
 
-# remove and swap the barcode to a new file
+# remove and swap the random barcode to a new file
 python ${path}swap_barcodes.py ${path}${data}.fasta ${path}${data}-noBarcodes.fasta ${path}${data}-Barcodes.fasta
 
-#keep sequnces that contains GAGGCCATGCGTCGACTA allowing 4 missmatches and remove the adapter after
+# keep sequnces that contains GAGGCCATGCGTCGACTA allowing 4 missmatches and remove the adapter after
 python ${path}filter_fasta.py ${path}${data}-noBarcodes.fasta GAGGCCATGCGTCGACTA ${path}${data}-filtered.fasta 4
 
 # delete everything up to the end of GCACGA
@@ -50,7 +50,7 @@ bowtie2-align -x ${index} -f ${path}${data}-trimmed.fasta -S ${path}${data}.sam
 ### 3. filtering ###
 ####################
 
-#filter out all reads with mismatches
+# filter out all reads with mismatches
 samtools view -Sh ${path}${data}.sam | grep -e "^@" -e "XM:i:[0][^0-9]" > ${path}${data}-filtered.sam
 
 # SAM to BED with collapsed read count by random barcodes
@@ -75,7 +75,6 @@ rm ${path}${data}.sam
 rm ${path}${data}-trimmed.fasta
 rm ${path}${data}-filtered.fasta
 rm ${path}${data}-noBarcodes.fasta
-rm ${path}${data}-Barcodes.fasta
 rm ${path}${data}.fasta
 
 ####################################

@@ -1,7 +1,12 @@
-All the 3' fragment data was mapped with Bowtie2.1 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) alignment software to customize TPI FASTA sequence. For the data type  conversions we used fastx-tools (http://hannonlab.cshl.edu/fastx_toolkit/) and samtools (http://samtools.sourceforge.net/). For the filtering and preprocessing we used custom scripts written in Python. Final figures were normalised in R version 3.0.2 (http://www.r-project.org/).
+All the 3' fragment data was mapped with Bowtie2.1 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) 
+alignment software to customize TPI FASTA sequence. For the data type  conversions we used fastx-tools 
+(http://hannonlab.cshl.edu/fastx_toolkit/) and samtools (http://samtools.sourceforge.net/). For the filtering 
+and preprocessing we used custom scripts written in Python. Final figures were normalised in R version 3.0.2 
+(http://www.r-project.org/).
 
 Pipeline description (3_prime_fragment-script.sh):
 1. preprocessing
+ - move random barcodes to a new fasta file (*Barcodes.fasta) 
  - select reads that contains  GAGGCCATGCGTCGACTA sequence allowing 4 missmatches
  - filter read sequences by deleting everything up to the end of  GCACGA
 2. mapping
@@ -18,13 +23,14 @@ Pipeline description (3_prime_fragment-script.sh):
 
 Scripts description:
  - 3_prime_fragment-script.sh
-Main script
+Main script of the pipeline.
 
  - filter_fasta.py
 The script will remove everything up to the end of adapter sequence allowing N number of miss matches.
 
  - SAMtoCollapsedSAMandBED.py 
-The script will read .SAM file and write it to collapsed .SAM file ignoring "4" flag for strand and remove all reads with duplicated barcode for each position. Collapsed data will be also written to  a .BED file format.
+The script will read .SAM file and write it to collapsed .SAM file ignoring "4" flag for strand and remove all 
+reads with duplicated barcode for each position. Collapsed data will be also written to  a .BED file format.
 
  - remove_up_stream.py
 The scrpt will remove everything up to the end of adapter sequence.
@@ -36,8 +42,8 @@ The script will set the chromosome and extend BED positions.
 The script will read fasta file and remove random barcode and experimental barcode from fasta. Random barcode 
 will be saved to a new fasta file.
 
- - xnts_per_nt.py
-Script will add a crosslink number from BED to every nt in the genome. Results will be written into 2 files 
+ - number_of_reads_per_nt.py
+Script will add a number of reads from BED to each nucleotide position in the transcript. Results will be written into 2 files 
 seperated by strand of the binding.
 
  - 3prime-fragment-plots-binning-filtering.R
