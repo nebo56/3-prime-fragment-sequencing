@@ -16,12 +16,16 @@ export PATH=/home/skgthab/programs/samtools-0.1.19:$PATH
 export PATH=/home/skgthab/programs/fastx_toolkit0.0.13:$PATH
 export PATH=/home/skgthab/programs/bedtools-2.17.0/bin:$PATH
 
-#set the data, path, bowtie2 index file path, chromosome of the transcript and a genomic start position of the transcript
+#set the data, path, bowtie2 index file path, chromosome and genomic start position of the transcript
 data=
 path=
 index=
 chromosome=
 genomic_start_position=
+
+########################
+### 1. preprocessing ###
+########################
 
 # convert fastq to fasta
 fastq_to_fasta -Q 33 -n -i ${path}${data}.fq -o ${path}${data}.fasta
@@ -35,8 +39,16 @@ python ${path}filter_fasta.py ${path}${data}-noBarcodes.fasta GAGGCCATGCGTCGACTA
 # delete everything up to the end of GCACGA
 python ${path}remove_up_stream.py ${path}${data}-filtered.fasta GCACGA ${path}${data}-trimmed.fasta
 
+##################
+### 2. mapping ###
+##################
+
 # map the remaining fasta sequence
 bowtie2-align -x ${index} -f ${path}${data}-trimmed.fasta -S ${path}${data}.sam
+
+####################
+### 3. filtering ###
+####################
 
 #filter out all reads with mismatches
 samtools view -Sh ${path}${data}.sam | grep -e "^@" -e "XM:i:[0][^0-9]" > ${path}${data}-filtered.sam
@@ -52,10 +64,30 @@ python ${path}xnts_per_nt.py ${path}${data}.bed ${path}${data} ${index}.fa
 
 # convert mapped reads SAM to BAM and BAI
 samtools view -Sb ${path}${data}-collapsed.sam > ${path}${data}-collapsed.bam
-rm ${path}${data}-collapsed.sam
 samtools sort ${path}${data}-collapsed.bam ${path}${data}-collapsed-sorted
-rm ${path}${data}-collapsed.bam
 samtools index ${path}${data}-collapsed-sorted.bam ${path}${data}-collapsed-sorted.bam.bai
+
+# clean
+rm ${path}${data}-collapsed.sam
+rm ${path}${data}-collapsed.bam
+rm ${path}${data}-filtered.sam
+rm ${path}${data}.sam
+rm ${path}${data}-trimmed.fasta
+rm ${path}${data}-filtered.fasta
+rm ${path}${data}-noBarcodes.fasta
+rm ${path}${data}-Barcodes.fasta
+rm ${path}${data}.fasta
+
+####################################
+### 4. normalising and filtering ###
+####################################
+
+# use "3prime-fragment-plots-binning-filtering.R" script for additinal filtering and normalisation
+
+
+
+
+
 
 
 
