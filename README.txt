@@ -1,8 +1,4 @@
-All the 3' fragment data was mapped with Bowtie2.1 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) alignment 
-software to customize TPI FASTA sequence. For the data type  conversions we used fastx-tools 
-(http://hannonlab.cshl.edu/fastx_toolkit/) and samtools (http://samtools.sourceforge.net/). For the filtering and 
-preprocessing we used custom scripts written in Python. Final figures were normalised in R version 3.0.2 
-(http://www.r-project.org/).
+All the 3' fragment data was mapped with Bowtie2.1 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) alignment software to customize TPI FASTA sequence. For the data type  conversions we used fastx-tools (http://hannonlab.cshl.edu/fastx_toolkit/) and samtools (http://samtools.sourceforge.net/). For the filtering and preprocessing we used custom scripts written in Python. Final figures were normalised in R version 3.0.2 (http://www.r-project.org/).
 
 Pipeline description (3_prime_fragment-script.sh):
 1. preprocessing
