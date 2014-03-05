@@ -22,24 +22,30 @@ Pipeline description (3_prime_fragment-script.sh):
 
 Scripts description:
  - 3_prime_fragment-script.sh
-	Main script
+Main script
+
  - filter_fasta.py
-	The script will remove everything up to the end of adapter sequence allowing N number of miss matches.
+The script will remove everything up to the end of adapter sequence allowing N number of miss matches.
+
  - SAMtoCollapsedSAMandBED.py 
-	The script will read .SAM file and write it to collapsed .SAM file ignoring "4" flag for strand and remove all 
-	reads with duplicated barcode for each position. Collapsed data will be also written to  a .BED file format.
+The script will read .SAM file and write it to collapsed .SAM file ignoring "4" flag for strand and remove all reads with duplicated barcode for each position. Collapsed data will be also written to  a .BED file format.
+
  - remove_up_stream.py
-	The scrpt will remove everything up to the end of adapter sequence.
+The scrpt will remove everything up to the end of adapter sequence.
+
  - setBEDpositions.py
-	The script will set the chromosome and extend BED positions.
+The script will set the chromosome and extend BED positions.
+
  - swap_barcodes.py
-	The script will read fasta file and remove random barcode and experimental barcode from fasta. Random barcode 
-	will be saved to a new fasta file.
+The script will read fasta file and remove random barcode and experimental barcode from fasta. Random barcode 
+will be saved to a new fasta file.
+
  - xnts_per_nt.py
-	Script will add a crosslink number from BED to every nt in the genome. Results will be written into 2 files 
-	seperated by strand of the binding.
+Script will add a crosslink number from BED to every nt in the genome. Results will be written into 2 files 
+seperated by strand of the binding.
+
  - 3prime-fragment-plots-binning-filtering.R
-	The script will import 3 prime fragments tables and added aditional columns with binned and normalised values. 
-	Each one of them will be ploted in 1 nucleotide, 10 nt and 30 nt resolution. Set all paths to "*_same.tab" tables 
-	from 3 prime fragments results.
+The script will import 3 prime fragments tables and added aditional columns with binned and normalised values. 
+Each one of them will be ploted in 1 nucleotide, 10 nt and 30 nt resolution. Set all paths to "*_same.tab" tables 
+from 3 prime fragments results.
 
