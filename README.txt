@@ -16,9 +16,9 @@ Pipeline description (3_prime_fragment-script.sh):
  - count number of reads with uniq random barcode for each position (un-uniq reads are part of the PCR artifacts)
  - select reads which are mapped on the same strand only (anti sense reads are part of background noise)
 4. normalising and filtering (R scripts)
- - use 10 and 30 nucleotide binning 
+ - binning with 10 and 30 nucleotide resolution 
  - normalise counts with the number of all reads per sample
- - remove the background noise by filtering each TPI-mutant sample with TPI wild type (TPI-WT)
+ - remove the background noise from TPI-mutants by substracion of TPI wild type (TPI-WT)
 
 
 Scripts description:
@@ -44,7 +44,7 @@ will be saved to a new fasta file.
 
  - number_of_reads_per_nt.py
 Script will add a number of reads from BED to each nucleotide position in the transcript. Results will be written into 2 files 
-seperated by strand of the binding.
+seperated by strand of the binding (same.bed and anti.bed).
 
  - 3prime-fragment-plots-binning-filtering.R
 The script will import 3 prime fragments tables and added aditional columns with binned and normalised values. 
