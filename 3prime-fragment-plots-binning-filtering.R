@@ -34,13 +34,13 @@ binning <- function(vector, bin_size) {
 
 
 ### library Ule_Nov3 ###
-tpi_48 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov3-Library1-4/TPI-PTC48/Ule_Nov3_NoIndex_L007_R1_001._CCGG_same.tab", header = TRUE)
-tpi_100 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov3-Library1-4/TPI-PTC100/Ule_Nov3_NoIndex_L007_R1_001._TTAG_same.tab", header = TRUE)
-tpi_120 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov3-Library1-4/TPI-PTC120/Ule_Nov3_NoIndex_L007_R1_001._AATG_same.tab", header = TRUE)
-tpi_160 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov3-Library1-4/TPI-PTC160/Ule_Nov3_NoIndex_L007_R1_001._GGTC_same.tab", header = TRUE)
-tpi_189 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov3-Library1-4/TPI-PTC189/Ule_Nov3_NoIndex_L007_R1_001._AACC_same.tab", header = TRUE)
-tpi_smg5 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov3-Library1-4/TPI-SMG5/Ule_Nov3_NoIndex_L007_R1_001._GGCA_same.tab",header=TRUE)
-tpi_wt <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov3-Library1-4/TPI-WT/Ule_Nov3_NoIndex_L007_R1_001._ACCT_same.tab",header=TRUE)
+tpi_48 <- read.table("../Ule_Nov3-Library1-4/TPI-PTC48/Ule_Nov3_NoIndex_L007_R1_001._CCGG_same.tab", header = TRUE)
+tpi_100 <- read.table("../Ule_Nov3-Library1-4/TPI-PTC100/Ule_Nov3_NoIndex_L007_R1_001._TTAG_same.tab", header = TRUE)
+tpi_120 <- read.table("../Ule_Nov3-Library1-4/TPI-PTC120/Ule_Nov3_NoIndex_L007_R1_001._AATG_same.tab", header = TRUE)
+tpi_160 <- read.table("../Ule_Nov3-Library1-4/TPI-PTC160/Ule_Nov3_NoIndex_L007_R1_001._GGTC_same.tab", header = TRUE)
+tpi_189 <- read.table("../results/Ule_Nov3-Library1-4/TPI-PTC189/Ule_Nov3_NoIndex_L007_R1_001._AACC_same.tab", header = TRUE)
+tpi_smg5 <- read.table("../results/Ule_Nov3-Library1-4/TPI-SMG5/Ule_Nov3_NoIndex_L007_R1_001._GGCA_same.tab",header=TRUE)
+tpi_wt <- read.table("../results/Ule_Nov3-Library1-4/TPI-WT/Ule_Nov3_NoIndex_L007_R1_001._ACCT_same.tab",header=TRUE)
 
 #normalisation
 tpi_48$normalised <- tpi_48$cDNA / sum(tpi_48$cDNA)
@@ -133,25 +133,25 @@ plot(tpi_wt$bin30, type = "h", ylab="normalised counts", xlab = "position", main
 
 
 # save tables
-write.table(tpi_48, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-48.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_100, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-100.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_120, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-120.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_160, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-160.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_189, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-189.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_smg5, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-SMG5.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_wt, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-WT.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_48, file= "../Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-48.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_100, file= "../Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-100.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_120, file= "../Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-120.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_160, file= "../Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-160.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_189, file= "../Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-189.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_smg5, file= "../Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-SMG5.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_wt, file= "../Ule_Nov3-Library1-4/Ule_Nov3-Library1-4-TPI-WT.tab", quote=FALSE, row.names= FALSE, sep="\t")
 
 
 #####################################################
 
 ### library Ule_Nov4 ###
-tpi_48 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov4-Library1-4/TPI-PTC48/Ule_Nov4_NoIndex_L008_R1_001._CCGG_same.tab", header = TRUE)
-tpi_100 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov4-Library1-4/TPI-PTC100/Ule_Nov4_NoIndex_L008_R1_001._TTAG_same.tab", header = TRUE)
-tpi_120 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov4-Library1-4/TPI-PTC120/Ule_Nov4_NoIndex_L008_R1_001._AATG_same.tab", header = TRUE)
-tpi_160 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov4-Library1-4/TPI-PTC160/Ule_Nov4_NoIndex_L008_R1_001._GGTC_same.tab", header = TRUE)
-tpi_189 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov4-Library1-4/TPI-PTC189/Ule_Nov4_NoIndex_L008_R1_001._AACC_same.tab", header = TRUE)
-tpi_smg5 <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov4-Library1-4/TPI-SMG5/Ule_Nov4_NoIndex_L008_R1_001._GGCA_same.tab",header=TRUE)
-tpi_wt <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov4-Library1-4/TPI-WT/Ule_Nov4_NoIndex_L008_R1_001._ACCT_same.tab",header=TRUE)
+tpi_48 <- read.table("../Ule_Nov4-Library1-4/TPI-PTC48/Ule_Nov4_NoIndex_L008_R1_001._CCGG_same.tab", header = TRUE)
+tpi_100 <- read.table("../Ule_Nov4-Library1-4/TPI-PTC100/Ule_Nov4_NoIndex_L008_R1_001._TTAG_same.tab", header = TRUE)
+tpi_120 <- read.table("../Ule_Nov4-Library1-4/TPI-PTC120/Ule_Nov4_NoIndex_L008_R1_001._AATG_same.tab", header = TRUE)
+tpi_160 <- read.table("../Ule_Nov4-Library1-4/TPI-PTC160/Ule_Nov4_NoIndex_L008_R1_001._GGTC_same.tab", header = TRUE)
+tpi_189 <- read.table("../Ule_Nov4-Library1-4/TPI-PTC189/Ule_Nov4_NoIndex_L008_R1_001._AACC_same.tab", header = TRUE)
+tpi_smg5 <- read.table("../Ule_Nov4-Library1-4/TPI-SMG5/Ule_Nov4_NoIndex_L008_R1_001._GGCA_same.tab",header=TRUE)
+tpi_wt <- read.table("../Ule_Nov4-Library1-4/TPI-WT/Ule_Nov4_NoIndex_L008_R1_001._ACCT_same.tab",header=TRUE)
 
 #normalisation
 tpi_48$normalised <- tpi_48$cDNA / sum(tpi_48$cDNA)
@@ -243,25 +243,25 @@ plot(tpi_wt$bin10, type = "h", ylab="normalised counts", xlab = "position", main
 plot(tpi_wt$bin30, type = "h", ylab="normalised counts", xlab = "position", main = "TPI-WT - 30nt")
 
 # save tables
-write.table(tpi_48, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-48.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_100, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-100.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_120, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-120.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_160, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-160.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_189, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-189.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_smg5, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-SMG5.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_wt, file= "/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-WT.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_48, file= "../Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-48.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_100, file= "../Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-100.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_120, file= "../Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-120.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_160, file= "../Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-160.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_189, file= "../Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-189.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_smg5, file= "../Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-SMG5.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_wt, file= "../Ule_Nov4-Library1-4/Ule_Nov4-Library1-4-TPI-WT.tab", quote=FALSE, row.names= FALSE, sep="\t")
 
 
 ########################
 ### library Ule_Nov5 ###
 ########################
 
-tpi_160_ACCT <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._ACCT_same.tab", header = TRUE)
-tpi_160_CCGG <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._CCGG_same.tab", header = TRUE)
-tpi_160_TTAG <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._TTAG_same.tab", header = TRUE)
-tpi_160_AATG <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._AATG_same.tab", header = TRUE)
-tpi_160_GGTC <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._GGTC_same.tab", header = TRUE)
-tpi_160_AACC <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._AACC_same.tab", header = TRUE)
+tpi_160_ACCT <- read.table("../Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._ACCT_same.tab", header = TRUE)
+tpi_160_CCGG <- read.table("../Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._CCGG_same.tab", header = TRUE)
+tpi_160_TTAG <- read.table("../Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._TTAG_same.tab", header = TRUE)
+tpi_160_AATG <- read.table("../Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._AATG_same.tab", header = TRUE)
+tpi_160_GGTC <- read.table("../Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._GGTC_same.tab", header = TRUE)
+tpi_160_AACC <- read.table("../Ule_Nov1-Library5/Ule_Nov1_NoIndex_L005_R1_001._AACC_same.tab", header = TRUE)
 
 #normalisation
 tpi_160_ACCT$normalised <- tpi_160_ACCT$cDNA / sum(tpi_160_ACCT$cDNA)
@@ -330,21 +330,21 @@ plot(tpi_160_AACC$bin10, type = "h", ylab="normalised counts", xlab = "position"
 plot(tpi_160_AACC$bin30, type = "h", ylab="normalised counts", xlab = "position", main = "TPI-160_AACC - 30nt")
 
 # save tables
-write.table(tpi_160_AACC, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_AACC.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_160_AATG, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_AATG.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_160_ACCT, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_ACCT.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_160_CCGG, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_CCGG.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_160_GGTC, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_GGTC.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_160_TTAG, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_TTAG.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_160_AACC, file="../Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_AACC.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_160_AATG, file="../Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_AATG.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_160_ACCT, file="../Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_ACCT.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_160_CCGG, file="../Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_CCGG.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_160_GGTC, file="../Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_GGTC.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_160_TTAG, file="../Ule_Nov1-Library5/Ule_Nov1-Library5-TPI-160_TTAG.tab", quote=FALSE, row.names= FALSE, sep="\t")
 
 
 ########################
 ### library Ule_Nov6 ###
 ########################
 
-tpi_SMG5_AATG <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov2-Library6/Library6-SMG5_NM_015327/Ule_Nov2_NoIndex_L006_R1_001._AATG_same.tab", header = TRUE)
-tpi_SMG5_GGTC <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov2-Library6/Library6-SMG5_NM_015327/Ule_Nov2_NoIndex_L006_R1_001._GGTC_same.tab", header = TRUE)
-tpi_ACTB <- read.table("/media/skgthab/storage/UCL/2014.01.14@Niels-3primeFragment/results/Ule_Nov2-Library6/Library6-ACTB_NM_001101/Ule_Nov2_NoIndex_L006_R1_001._AACC_same.tab", header = TRUE)
+tpi_SMG5_AATG <- read.table("../Ule_Nov2-Library6/Library6-SMG5_NM_015327/Ule_Nov2_NoIndex_L006_R1_001._AATG_same.tab", header = TRUE)
+tpi_SMG5_GGTC <- read.table("../Ule_Nov2-Library6/Library6-SMG5_NM_015327/Ule_Nov2_NoIndex_L006_R1_001._GGTC_same.tab", header = TRUE)
+tpi_ACTB <- read.table("../Ule_Nov2-Library6/Library6-ACTB_NM_001101/Ule_Nov2_NoIndex_L006_R1_001._AACC_same.tab", header = TRUE)
 
 #normalisation
 tpi_SMG5_AATG$normalised <- tpi_SMG5_AATG$cDNA / sum(tpi_SMG5_AATG$cDNA)
@@ -382,8 +382,8 @@ plot(tpi_ACTB$bin30, type = "h", ylab="normalised counts", xlab = "position", ma
 
 
 # save tables
-write.table(tpi_SMG5_AATG, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov2-Library6/Ule_Nov2-Library6-SMG5(NM_015327)-AATG.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_SMG5_GGTC, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov2-Library6/Ule_Nov2-Library6-SMG5(NM_015327)-GGTC.tab", quote=FALSE, row.names= FALSE, sep="\t")
-write.table(tpi_ACTB, file="/home/skgthab/Dropbox/UCL-Nejc/2014.01.14@Niels-3primeFragment/plots-working/filtered_and_normalised/Ule_Nov2-Library6/Ule_Nov2-Library6-ACTB(NM_001101).tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_SMG5_AATG, file="../Ule_Nov2-Library6/Ule_Nov2-Library6-SMG5(NM_015327)-AATG.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_SMG5_GGTC, file="../Ule_Nov2-Library6/Ule_Nov2-Library6-SMG5(NM_015327)-GGTC.tab", quote=FALSE, row.names= FALSE, sep="\t")
+write.table(tpi_ACTB, file="../Ule_Nov2-Library6/Ule_Nov2-Library6-ACTB(NM_001101).tab", quote=FALSE, row.names= FALSE, sep="\t")
 
 
