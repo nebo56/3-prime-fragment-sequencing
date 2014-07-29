@@ -17,9 +17,10 @@ export PATH=/home/skgthab/programs/fastx_toolkit0.0.13:$PATH
 export PATH=/home/skgthab/programs/bedtools-2.17.0/bin:$PATH
 
 #set the data, path, bowtie2 index file path, chromosome and genomic start position of the transcript
-data=
 path=
-index=
+data=$1
+index=$2
+scripts=
 chromosome=
 genomic_start_position=
 
@@ -27,24 +28,25 @@ genomic_start_position=
 ### 1. preprocessing ###
 ########################
 
+
+# remove adapters
+fastx_clipper -Q 33 -a AGATCGGAAGAGCGGTTCAGCAGGAATGCCGAGACCGATCTCGTATGCCGTCTTCTGCTTG -i ${path}${data}.fq > ${path}${data}-clipped.fq
+
 # convert fastq to fasta
-fastq_to_fasta -Q 33 -n -i ${path}${data}.fq -o ${path}${data}.fasta
+fastq_to_fasta -Q 33 -n -i ${path}${data}-clipped.fq -o ${path}${data}.fasta
+
+# delete everything up to the end of GCTGATGGCGATGAATGA
+python ${scripts}remove_up_stream.py ${path}${data}.fasta GCTGATGGCGATGAATGA ${path}${data}-filtered.fasta
 
 # remove and swap the random barcode to a new file
-python ${path}swap_barcodes.py ${path}${data}.fasta ${path}${data}-noBarcodes.fasta ${path}${data}-Barcodes.fasta
-
-# keep sequnces that contains GAGGCCATGCGTCGACTA allowing 4 missmatches and remove the adapter after
-python ${path}filter_fasta.py ${path}${data}-noBarcodes.fasta GAGGCCATGCGTCGACTA ${path}${data}-filtered.fasta 4
-
-# delete everything up to the end of GCACGA
-python ${path}remove_up_stream.py ${path}${data}-filtered.fasta GCACGA ${path}${data}-trimmed.fasta
+python ${scripts}swap_barcodes.py ${path}${data}-filtered.fasta ${path}${data}-noBarcodes.fasta ${path}${data}-Barcodes.fasta
 
 ##################
 ### 2. mapping ###
 ##################
 
 # map the remaining fasta sequence
-bowtie2-align -x ${index} -f ${path}${data}-trimmed.fasta -S ${path}${data}.sam
+bowtie2-align -x /home/skgthab/bowtie-indexes/${index}/${index} -f ${path}${data}-noBarcodes.fasta -S ${path}${data}.sam
 
 ####################
 ### 3. filtering ###
@@ -54,13 +56,13 @@ bowtie2-align -x ${index} -f ${path}${data}-trimmed.fasta -S ${path}${data}.sam
 samtools view -Sh ${path}${data}.sam | grep -e "^@" -e "XM:i:[0][^0-9]" > ${path}${data}-filtered.sam
 
 # SAM to BED with collapsed read count by random barcodes
-python ${path}SAMtoCollapsedSAMandBED.py ${path}${data}-filtered.sam ${path}${data}-Barcodes.fasta ${path}${data}-collapsed.sam ${path}${data}.bed
+python ${scripts}SAMtoCollapsedSAMandBED.py ${path}${data}-filtered.sam ${path}${data}-Barcodes.fasta ${path}${data}-collapsed.sam ${path}${data}.bed
 
 # add chromosome and starting genome position to BED
-python ${path}setBEDpositions.py ${path}${data}.bed ${path}${data}-genome_wide.bed ${chromosome} ${genomic_start_position}
+python ${scripts}setBEDpositions.py ${path}${data}.bed ${path}${data}-genome_wide.bed ${chromosome} ${genomic_start_position}
 
 # create table with xnts per nt from the genome
-python ${path}xnts_per_nt.py ${path}${data}.bed ${path}${data} ${index}.fa
+python ${scripts}xnts_per_nt.py ${path}${data}.bed ${path}${data} /home/skgthab/bowtie-indexes/${index}/${index}.fa
 
 # convert mapped reads SAM to BAM and BAI
 samtools view -Sb ${path}${data}-collapsed.sam > ${path}${data}-collapsed.bam
